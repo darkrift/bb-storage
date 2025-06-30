@@ -9,6 +9,7 @@ import (
 
 	remoteexecution "github.com/bazelbuild/remote-apis/build/bazel/remote/execution/v2"
 	"github.com/buildbarn/go-sha256tree"
+	"github.com/zeebo/blake3"
 )
 
 // SupportedDigestFunctions is the list of digest functions supported by
@@ -21,6 +22,7 @@ var SupportedDigestFunctions = []remoteexecution.DigestFunction_Value{
 	remoteexecution.DigestFunction_SHA256TREE,
 	remoteexecution.DigestFunction_SHA384,
 	remoteexecution.DigestFunction_SHA512,
+	remoteexecution.DigestFunction_BLAKE3,
 }
 
 // shortestSupportedHashStringSize is the size of the shortest string
@@ -78,6 +80,14 @@ var (
 		},
 		hashBytesSize: sha512.Size,
 	}
+
+	blake3BareFunction = bareFunction{
+		enumValue: remoteexecution.DigestFunction_BLAKE3,
+		hasherFactory: func(expectedSizeBytes int64) hash.Hash {
+			return blake3.New()
+		},
+		hashBytesSize: 32,
+	}
 )
 
 // getBareFunctionByEnumValue returns the bare digest function that
@@ -112,6 +122,8 @@ func getBareFunction(digestFunction remoteexecution.DigestFunction_Value, hashSt
 		return &sha384BareFunction
 	case remoteexecution.DigestFunction_SHA512:
 		return &sha512BareFunction
+	case remoteexecution.DigestFunction_BLAKE3:
+		return &blake3BareFunction
 	}
 	return nil
 }
