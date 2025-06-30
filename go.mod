@@ -32,6 +32,7 @@ require (
 	github.com/prometheus/common v0.62.0
 	github.com/sercand/kuberesolver/v5 v5.1.1
 	github.com/stretchr/testify v1.10.0
+	github.com/zeebo/blake3 v0.2.4
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.59.0
 	go.opentelemetry.io/contrib/propagators/b3 v1.34.0
 	go.opentelemetry.io/otel v1.34.0
@@ -95,6 +96,7 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.14.1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.25.1 // indirect
+	github.com/klauspost/cpuid/v2 v2.0.12 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
